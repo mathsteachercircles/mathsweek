@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waitlist — Maths Week Australia</title>
+<!-- Keep thank-you pages out of Google search results -->
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23FFD753'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial,sans-serif' font-weight='bold' font-size='24' fill='%230B3D24'%3EMWA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Be+Vietnam+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--green:#00843D;--gold:#FFD753;--coral:#E94F3D;--teal:#2FB6BC;--ink:#0B3D24;--cream:#FFF6DA;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Be Vietnam Pro',sans-serif;font-weight:300;color:var(--ink);background:var(--cream);line-height:1.7;}
+  .page{max-width:640px;margin:0 auto;padding:64px 24px 80px;}
+  h1{font-family:'Caveat','Bradley Hand','Marker Felt',cursive;font-weight:700;font-size:clamp(3rem,8vw,4.5rem);line-height:1.05;transform:rotate(-1deg);margin-bottom:36px;}
+  p{margin-bottom:20px;font-size:1.05rem;}
+  .question{
+    background:var(--gold);border-radius:18px;padding:18px 24px;
+    font-weight:600;font-style:italic;font-size:1.1rem;margin:28px 0 12px;
+  }
+  .question .arrow{color:var(--coral);font-style:normal;font-weight:700;}
+  .question .hint{display:block;font-weight:300;font-size:.92rem;margin-top:4px;}
+  .options{list-style:none;margin:0 0 28px;padding:14px 24px 4px;}
+  .options li{margin-bottom:10px;font-size:1.05rem;}
+  .options .letter{font-weight:700;color:var(--coral);margin-right:8px;}
+  .sign{margin-top:44px;}
+  .sign .name{font-weight:700;font-size:1.1rem;margin-bottom:2px;}
+  .sign .role{font-size:.92rem;font-style:italic;margin-bottom:24px;}
+  .sign img{
+    width:120px;height:120px;border-radius:50%;object-fit:cover;
+    border:3px solid var(--ink);box-shadow:3px 4px 0 rgba(11,61,36,.15);
+    transform:rotate(-2deg);
+  }
+  footer{text-align:center;font-size:.85rem;font-weight:400;padding-bottom:40px;}
+  footer a{color:var(--teal);font-weight:600;text-decoration:none;}
+</style>
+</head>
+<body>
+<!-- ======================================================================
+     MAKING ANOTHER VERSION OF THIS PAGE:
+     1. In GitHub, open this file → "..." menu → copy the raw contents,
+        then Add file → Create new file → name it e.g. thank-you-schools.html
+        → paste → edit the marked EDITABLE sections → Commit.
+     2. The new page will be live at https://mathsweek.au/thank-you-schools.html
+     ====================================================================== -->
+<div class="page">
+  <!-- ============ EDITABLE: heading ============ -->
+  <h1>You've been added to the Waitlist</h1>
+  <!-- ============ EDITABLE: body ============ -->
+  <p>Closer to Maths Week, you'll get more details + first access to the Passes.</p>
+  <p>In the meantime, I'd also love to know:</p>
+  <div class="question">
+    <span class="arrow">→</span> What's most likely to get in the way of running Maths Week the way you'd like?
+  </div>
+  <ul class="options">
+    <li><span class="letter">A.</span> Finding time in a packed term</li>
+    <li><span class="letter">B.</span> Getting other teachers on board</li>
+    <li><span class="letter">C.</span> Adapting activities for my students</li>
+    <li><span class="letter">D.</span> Confidence with the maths content</li>
+    <li><span class="letter">E.</span> Tech or logistics at my school</li>
+    <li><span class="letter">F.</span> Something else — tell me in your reply</li>
+  </ul>
+  <p>You can reply to my email with the letter.</p>
+  <p>(This will help me better help you.)</p>
+  <!-- ============ sign-off ============ -->
+  <div class="sign">
+    <p style="margin-bottom:6px;">Cheers!</p>
+    <div class="name">Michaela Epstein</div>
+    <div class="role">Director, Maths Week Australia</div>
+    <!-- PHOTO: this uses the headshot already in the repo. To use the
+         sunglasses photo from the PDF instead, upload it (e.g. as
+         michaela-thankyou.jpg) and change the src below to match. -->
+    <img src="michaela-epstein-sun.jpg" alt="Michaela Epstein">
+  </div>
+</div>
+<footer>
+  <a href="https://mathsweek.au">mathsweek.au</a> · 10–14 May 2027
+</footer>
+</body>
+</html>
