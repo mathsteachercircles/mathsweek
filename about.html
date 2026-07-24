@@ -31,19 +31,43 @@
     display:flex;align-items:center;justify-content:space-between;gap:16px;
     max-width:1100px;margin:0 auto;padding:18px 24px;
   }
-  .nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);}
+  .nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);min-width:0;}
   .nav-brand .sq{
     width:38px;height:38px;border-radius:9px;background:var(--gold);
     display:flex;align-items:center;justify-content:center;
     font-weight:700;font-size:.75rem;letter-spacing:.02em;
   }
-  .nav-brand .word{font-family:'Caveat',cursive;font-weight:700;font-size:1.5rem;}
+  .nav-brand .word{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(1.15rem,4vw,1.5rem);white-space:nowrap;}
   .nav-links{display:flex;align-items:center;gap:22px;}
-  .nav-links a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem;}
+  .nav-links a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem;white-space:nowrap;}
   .nav-links a.active{border-bottom:3px solid var(--gold);}
   .nav-links a.btn-register{
     background:var(--green);color:#fff;border-radius:999px;padding:10px 24px;
     font-weight:700;box-shadow:3px 4px 0 rgba(11,61,36,.2);
+  }
+  /* burger — hidden on desktop */
+  .burger{
+    display:none;background:none;border:none;cursor:pointer;padding:8px;
+    z-index:60;flex:none;
+  }
+  .burger span{display:block;width:26px;height:3px;background:var(--ink);border-radius:2px;margin:5px 0;transition:.2s;}
+  .nav-overlay{display:none;}
+  @media(max-width:700px){
+    .burger{display:block;}
+    .nav-links{
+      position:fixed;top:0;right:-280px;height:100vh;width:250px;
+      background:var(--cream);flex-direction:column;align-items:flex-start;
+      padding:84px 30px;gap:28px;z-index:55;
+      box-shadow:-4px 0 20px rgba(11,61,36,.15);transition:right .25s ease;
+    }
+    .nav-links.open{right:0;}
+    .nav-links a{font-size:1.1rem;}
+    .nav-overlay.show{
+      display:block;position:fixed;inset:0;background:rgba(11,61,36,.35);z-index:50;
+    }
+    body.menu-open .burger span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+    body.menu-open .burger span:nth-child(2){opacity:0;}
+    body.menu-open .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
   }
 
   /* ---------- HEADER BAND ---------- */
@@ -126,11 +150,30 @@
     <span class="sq">MWA</span>
     <span class="word">Maths Week Australia</span>
   </a>
-  <div class="nav-links">
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
     <a href="about.html" class="active">About</a>
     <a href="https://mathsweek.au" class="btn-register">Register →</a>
   </div>
 </nav>
+<div class="nav-overlay" id="navOverlay"></div>
+<script>
+  (function(){
+    var burger=document.getElementById('burger'),
+        links=document.getElementById('navLinks'),
+        overlay=document.getElementById('navOverlay');
+    function toggle(open){
+      links.classList.toggle('open',open);
+      overlay.classList.toggle('show',open);
+      document.body.classList.toggle('menu-open',open);
+      burger.setAttribute('aria-expanded',open);
+    }
+    burger.addEventListener('click',function(){toggle(!links.classList.contains('open'));});
+    overlay.addEventListener('click',function(){toggle(false);});
+  })();
+</script>
 
 <div class="band">
   <h1>About Maths Week Australia</h1>
@@ -252,9 +295,11 @@
       <h3>Join These Schools That Are Taking Part</h3>
       <!-- ADD SCHOOLS: <span class="supporter"><img src="school.png" alt="School Name"></span> -->
       <div class="logo-strip">
-        <span class="supporter"><img src="st-michaels-grammar-school.png" alt="St Michael's Grammar School"></span>
-        <span class="supporter"><img src="the-knox-school.jpg" alt="The Knox School"></span>
-        <span class="supporter"><img src="yeshivah-beth-rivkah-colleges.jpg" alt="Yeshiva-Beth Rivkah Colleges"></span>
+        <span class="supporter"><img src="Schools/st-michaels-grammar-school.png" alt="St Michael's Grammar School"></span>
+        <span class="supporter"><img src="Schools/the-knox-school.jpg" alt="The Knox School"></span>
+        <span class="supporter"><img src="Schools/yeshivah-beth-rivkah-colleges.jpg" alt="Yeshiva-Beth Rivkah Colleges"></span>
+        <span class="supporter"><img src="Schools/port-elliot-primary-school.png" alt="Port Elliot Primary School"></span>
+        <span class="supporter"><img src="Schools/st-josephs-college-gregory-terrace.png" alt="St Joseph's College Gregory Terrace"></span>
       </div>
     </div>
   </div>
