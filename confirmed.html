@@ -251,6 +251,7 @@ src="https://www.facebook.com/tr?id=2131205674137564&ev=PageView&noscript=1"
   // confirmation email, so this event is a clean count of confirmed
   // registrations — compare it against Kit signups for a confirmation rate.
   if (window.gtag) gtag('event','signup_confirmed');
+  if (window.fbq) fbq('track', 'CompleteRegistration');
 
   // Copy link
   document.getElementById('copyBtn').addEventListener('click', function(){
