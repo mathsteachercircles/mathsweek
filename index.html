@@ -576,6 +576,7 @@ src="https://www.facebook.com/tr?id=2131205674137564&ev=PageView&noscript=1"
         form.style.display='none';
         document.getElementById('success').style.display='block';
         if (window.gtag) gtag('event','signup_success');
+        if (window.fbq) fbq('track', 'Lead');
       }).catch(showSignupError);
     } catch(err) {
       showSignupError();
