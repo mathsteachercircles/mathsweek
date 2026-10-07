@@ -1,78 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-AU">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>You're in — Maths Week Australia</title>
-<meta name="description" content="Your registration for Maths Week Australia is confirmed.">
-<!-- Utility page: reached only by people clicking the confirm link in the Kit
-     confirmation email. Keep it out of search — it is not an entry point. -->
-<meta name="robots" content="noindex, nofollow">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://mathsweek.au/confirmed">
-<meta property="og:title" content="You're in — Maths Week Australia">
-<meta property="og:description" content="Registration confirmed for Maths Week Australia. A free national celebration of maths for K–12 schools.">
-<meta property="og:image" content="https://mathsweek.au/socials/MWA_socialshare.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Maths Week Australia — 10–14 May 2027">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mathsweek.au/socials/MWA_socialshare.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23FFD753'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial,sans-serif' font-weight='bold' font-size='24' fill='%230B3D24'%3EMWA%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Be+Vietnam+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZDCWPXVEBB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZDCWPXVEBB');
-</script>
+---
+layout: default
+title: "You're in — Maths Week Australia"
+description: "Your registration for Maths Week Australia is confirmed."
+share_description: "Registration confirmed for Maths Week Australia. A free national celebration of maths for K–12 schools."
+# Utility page: reached only by clicking the confirm link in the Kit
+# confirmation email. Kept out of search — it is not an entry point.
+noindex: true
+---
 <style>
-  :root{--green:#00843D;--gold:#FFD753;--coral:#E94F3D;--teal:#2FB6BC;--ink:#0B3D24;--cream:#FFF6DA;}
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{font-family:'Be Vietnam Pro',sans-serif;font-weight:300;color:var(--ink);background:var(--cream);line-height:1.7;}
-  h1,h2{font-family:'Caveat','Bradley Hand','Marker Felt',cursive;font-weight:700;line-height:1.05;}
+  /* Styles for this page only. Shared styles (colours, menu, footer) live in _includes/site-styles.css */
   .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
-
-  /* ---------- NAV (same as about.html) ---------- */
-  nav{
-    display:flex;align-items:center;justify-content:space-between;gap:16px;
-    max-width:1100px;margin:0 auto;padding:18px 24px;
-  }
-  .nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);min-width:0;}
-  .nav-brand .sq{
-    width:38px;height:38px;border-radius:9px;background:var(--gold);
-    display:flex;align-items:center;justify-content:center;
-    font-weight:700;font-size:.75rem;letter-spacing:.02em;
-  }
-  .nav-brand .word{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(1.15rem,4vw,1.5rem);white-space:nowrap;}
-  .nav-links{display:flex;align-items:center;gap:22px;}
-  .nav-links a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem;white-space:nowrap;}
-  .nav-links a.btn-register{
-    background:var(--green);color:#fff;border-radius:999px;padding:10px 24px;
-    font-weight:700;box-shadow:3px 4px 0 rgba(11,61,36,.2);
-  }
-  .burger{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:60;flex:none;}
-  .burger span{display:block;width:26px;height:3px;background:var(--ink);border-radius:2px;margin:5px 0;transition:.2s;}
-  .nav-overlay{display:none;}
-  @media(max-width:700px){
-    .burger{display:block;}
-    .nav-links{
-      position:fixed;top:0;right:-280px;height:100vh;width:250px;
-      background:var(--cream);flex-direction:column;align-items:flex-start;
-      padding:84px 30px;gap:28px;z-index:55;
-      box-shadow:-4px 0 20px rgba(11,61,36,.15);transition:right .25s ease;
-    }
-    .nav-links.open{right:0;}
-    .nav-links a{font-size:1.1rem;}
-    .nav-overlay.show{display:block;position:fixed;inset:0;background:rgba(11,61,36,.35);z-index:50;}
-    body.menu-open .burger span:nth-child(1){transform:translateY(8px) rotate(45deg);}
-    body.menu-open .burger span:nth-child(2){opacity:0;}
-    body.menu-open .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
-  }
 
   /* ---------- HEADER BAND ---------- */
   .band{
@@ -129,64 +66,7 @@
   }
   .whats-next h2{color:#fff;margin-bottom:10px;}
   .whats-next p{margin:0 auto;max-width:520px;font-size:1.02rem;}
-
-  /* ---------- FOOTER ---------- */
-  footer{padding:44px 0;text-align:center;font-size:.85rem;font-weight:400;}
-  .footer-links{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;}
-  .footer-links a{color:var(--ink);text-decoration:none;font-weight:700;font-size:.95rem;}
-  .footer-links a:hover{color:var(--green);}
-  footer a{color:var(--teal);}
 </style>
-     <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2131205674137564');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2131205674137564&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-</head>
-<body>
-
-<nav>
-  <a class="nav-brand" href="https://mathsweek.au">
-    <span class="sq">MWA</span>
-    <span class="word">Maths Week Australia</span>
-  </a>
-  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-  <div class="nav-links" id="navLinks">
-    <a href="/about">About</a>
-    <a href="/contact">Contact</a>
-    <a href="https://mathsweek.au" class="btn-register">Register →</a>
-  </div>
-</nav>
-<div class="nav-overlay" id="navOverlay"></div>
-<script>
-  (function(){
-    var burger=document.getElementById('burger'),
-        links=document.getElementById('navLinks'),
-        overlay=document.getElementById('navOverlay');
-    function toggle(open){
-      links.classList.toggle('open',open);
-      overlay.classList.toggle('show',open);
-      document.body.classList.toggle('menu-open',open);
-      burger.setAttribute('aria-expanded',open);
-    }
-    burger.addEventListener('click',function(){toggle(!links.classList.contains('open'));});
-    overlay.addEventListener('click',function(){toggle(false);});
-  })();
-</script>
 
 <div class="band">
   <h1>You're in!</h1>
@@ -236,16 +116,6 @@ src="https://www.facebook.com/tr?id=2131205674137564&ev=PageView&noscript=1"
   </div>
 </section>
 
-<footer>
-  <div class="footer-links">
-    <a href="https://mathsweek.au">Register</a>
-    <a href="/about">About</a>
-    <a href="/contact">Contact Us</a>
-  </div>
-  <a href="https://mathsweek.au">mathsweek.au</a> · 10–14 May 2027<br>
-  An initiative of Maths Teacher Circles · <a href="/privacy" style="font-weight:400;color:inherit;">Privacy</a>
-</footer>
-
 <script>
   // This page is reached ONLY by clicking the confirm link in the Kit
   // confirmation email, so this event is a clean count of confirmed
@@ -265,5 +135,3 @@ src="https://www.facebook.com/tr?id=2131205674137564&ev=PageView&noscript=1"
     });
   });
 </script>
-</body>
-</html>

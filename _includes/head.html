@@ -1,0 +1,70 @@
+{% comment %}
+  =====================================================================
+  SHARED <head> — added to every page automatically.
+  Each page controls its own bits from the settings block at its top:
+    title:             browser tab + Google result title
+    description:       Google result snippet
+    noindex: true      keeps the page out of Google (thank-you pages etc.)
+    share_title:       (optional) title on the social share card
+    share_description: (optional) text on the social share card
+    share_image:       (optional) a different share image for this page
+    share_image_alt:   (optional) describe that image
+  Site-wide values (tracking IDs, default share image) are in _config.yml.
+  =====================================================================
+{% endcomment %}<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page.title | escape }}</title>
+<meta name="description" content="{{ page.description | default: site.description | escape }}">
+{% if page.noindex %}<meta name="robots" content="noindex">
+{% endif %}{% assign path = page.url | remove: '.html' %}{% if path == '/' %}{% assign path = '' %}{% endif %}<link rel="canonical" href="{{ site.url }}{{ path }}">
+
+<!-- Social share card -->
+{% assign share_image = page.share_image | default: site.share_image %}<meta property="og:type" content="website">
+<meta property="og:url" content="{{ site.url }}{{ path }}">
+<meta property="og:title" content="{{ page.share_title | default: page.title | escape }}">
+<meta property="og:description" content="{{ page.share_description | default: page.description | default: site.description | escape }}">
+<meta property="og:image" content="{{ site.url }}{{ share_image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ page.share_image_alt | default: site.share_image_alt | escape }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ site.url }}{{ share_image }}">
+
+<!-- Favicon: gold rounded square, MWA in deep gum -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23FFD753'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial,sans-serif' font-weight='bold' font-size='24' fill='%230B3D24'%3EMWA%3C/text%3E%3C/svg%3E">
+
+<!-- Fonts: Caveat Bold (headings) + Be Vietnam Pro (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Be+Vietnam+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga4_id }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ site.ga4_id }}');
+</script>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '{{ site.meta_pixel_id }}');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id={{ site.meta_pixel_id }}&ev=PageView&noscript=1"
+/></noscript>
+
+<!-- Shared styles (edit in _includes/site-styles.css) -->
+<style>
+{% include site-styles.css %}
+</style>

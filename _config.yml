@@ -1,0 +1,33 @@
+# =====================================================================
+#  SITE-WIDE SETTINGS for mathsweek.au
+#
+#  GitHub reads this file every time it publishes the site.
+#  It's fussy about formatting: keep the quotes, keep the "name: value"
+#  layout, and don't use tabs. If a change here breaks the publish,
+#  GitHub emails you and the live site stays on the last good version.
+# =====================================================================
+
+url: "https://mathsweek.au"
+
+# Used for any page that doesn't set its own description.
+description: "A free national celebration of maths for K–12 schools, 10–14 May 2027."
+
+# Default social share image (the card shown when a link is pasted into
+# Facebook, LinkedIn, WhatsApp...). To change it, upload the new image
+# under a NEW filename and update this path. Never overwrite in place.
+share_image: "/socials/MWA_socialshare.png"
+share_image_alt: "Maths Week Australia — 10–14 May 2027"
+
+# Tracking IDs, added to every page automatically.
+ga4_id: "G-ZDCWPXVEBB"
+meta_pixel_id: "2131205674137564"
+
+# If a page's settings block has a typo, stop the publish (and email you)
+# rather than putting that page live without its menu, styles and tracking.
+strict_front_matter: true
+
+# Repo notes that shouldn't be published as web pages.
+exclude:
+  - README.md
+  - public/notes.md
+  - socials/noted.md

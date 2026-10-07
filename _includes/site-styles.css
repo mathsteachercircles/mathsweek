@@ -1,0 +1,75 @@
+/* =====================================================================
+   SHARED STYLES — included in every page's <head> automatically.
+   Brand colours, base type, the top menu and the footer live here.
+   Styles for ONE page only go in the <style> block at the top of that
+   page's file, and they win over anything in this file.
+   MWA brand only: green + gold lead, coral/teal as small accents.
+   ===================================================================== */
+
+:root{
+  --green:#00843D;   /* Aussie green — buttons, big shapes */
+  --gold:#FFD753;    /* MWA gold — heroes, banners */
+  --coral:#E94F3D;   /* accent — badges, stickers, date chips */
+  --teal:#2FB6BC;    /* accent — links, tags */
+  --ink:#0B3D24;     /* deep gum — body text */
+  --cream:#FFF6DA;   /* base — page background */
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Be Vietnam Pro',sans-serif;font-weight:300;color:var(--ink);background:var(--cream);line-height:1.7;}
+/* Display font: Caveat Bold, with handwritten fallbacks if it can't load */
+h1,h2{font-family:'Caveat','Bradley Hand','Marker Felt','Segoe Print','Comic Sans MS',cursive;font-weight:700;line-height:1.05;}
+
+/* ---------- TOP MENU (_includes/nav.html) ---------- */
+.site-nav{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  max-width:1100px;margin:0 auto;padding:18px 24px;
+}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);min-width:0;}
+.nav-brand .sq{
+  width:38px;height:38px;border-radius:9px;background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:.75rem;letter-spacing:.02em;
+}
+.nav-brand .word{font-family:'Caveat','Bradley Hand','Marker Felt',cursive;font-weight:700;font-size:clamp(1.15rem,4vw,1.5rem);white-space:nowrap;}
+.nav-links{display:flex;align-items:center;gap:22px;}
+.nav-links a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem;white-space:nowrap;}
+.nav-links a.active{border-bottom:3px solid var(--gold);}
+.nav-links a.btn-register{
+  background:var(--green);color:#fff;border-radius:999px;padding:10px 24px;
+  font-weight:700;box-shadow:3px 4px 0 rgba(11,61,36,.2);
+}
+/* burger — hidden on desktop. Resets stop page-level button styles leaking in. */
+.burger{
+  display:none;background:none;border:none;cursor:pointer;padding:8px;
+  margin:0;border-radius:0;box-shadow:none;z-index:60;flex:none;
+}
+.burger:hover{transform:none;}
+.burger span{display:block;width:26px;height:3px;background:var(--ink);border-radius:2px;margin:5px 0;transition:.2s;}
+.nav-overlay{display:none;}
+@media(max-width:700px){
+  .burger{display:block;}
+  .nav-links{
+    position:fixed;top:0;right:-280px;height:100vh;width:250px;
+    background:var(--cream);flex-direction:column;align-items:flex-start;
+    padding:84px 30px;gap:28px;z-index:55;
+    box-shadow:-4px 0 20px rgba(11,61,36,.15);transition:right .25s ease;
+  }
+  .nav-links.open{right:0;}
+  .nav-links a{font-size:1.1rem;}
+  .nav-overlay.show{
+    display:block;position:fixed;inset:0;background:rgba(11,61,36,.35);z-index:50;
+  }
+  body.menu-open .burger span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+  body.menu-open .burger span:nth-child(2){opacity:0;}
+  body.menu-open .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+}
+
+/* ---------- FOOTER (_includes/footer.html) ---------- */
+.site-footer{padding:40px 24px 44px;text-align:center;font-size:.85rem;font-weight:400;}
+.site-footer a{color:var(--teal);font-weight:600;text-decoration:none;}
+.site-footer .footer-links{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;}
+.site-footer .footer-links a{color:var(--ink);font-weight:700;font-size:.95rem;}
+.site-footer .footer-links a:hover{color:var(--green);}
+.site-footer a.footer-privacy{color:inherit;font-weight:400;}
+.site-footer.slim{padding:0 24px 40px;}

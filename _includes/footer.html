@@ -1,0 +1,17 @@
+{% comment %}
+  =====================================================================
+  SHARED FOOTER — on every page. Edit here to change it everywhere.
+  Pages with "footer: slim" in their settings get the one-line version
+  (thank-you and waitlist pages).
+  =====================================================================
+{% endcomment %}{% if page.footer == 'slim' %}<footer class="site-footer slim">
+  <a href="/">mathsweek.au</a> · 10–14 May 2027
+</footer>{% else %}<footer class="site-footer">
+  <div class="footer-links">
+    <a href="/">Register</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact Us</a>
+  </div>
+  <a href="/">mathsweek.au</a> · 10–14 May 2027<br>
+  An initiative of Maths Teacher Circles · <a class="footer-privacy" href="/privacy">Privacy</a>
+</footer>{% endif %}

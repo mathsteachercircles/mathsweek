@@ -1,0 +1,43 @@
+{% comment %}
+  =====================================================================
+  SHARED TOP MENU — appears on every page except those with "nav: false"
+  in their settings block (the homepage and thank-you pages).
+
+  To add a menu item, copy one of the About/Contact lines and change the
+  link, the text, and the page file name in the "if page.url" part.
+  That part underlines the item when you're on that page.
+  On phones (under 700px wide) the links move into a slide-out menu.
+  =====================================================================
+{% endcomment %}<nav class="site-nav">
+  <a class="nav-brand" href="/">
+    <span class="sq">MWA</span>
+    <span class="word">Maths Week Australia</span>
+  </a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="/about"{% if page.url == '/about.html' %} class="active"{% endif %}>About</a>
+    <a href="/contact"{% if page.url == '/contact.html' %} class="active"{% endif %}>Contact</a>
+    <a href="/" class="btn-register">Register →</a>
+  </div>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+<script>
+  // Phone menu: burger opens the slide-out; tapping outside or Esc closes it.
+  (function(){
+    var burger=document.getElementById('burger'),
+        links=document.getElementById('navLinks'),
+        overlay=document.getElementById('navOverlay');
+    function toggle(open){
+      links.classList.toggle('open',open);
+      overlay.classList.toggle('show',open);
+      document.body.classList.toggle('menu-open',open);
+      burger.setAttribute('aria-expanded',open);
+      burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+    }
+    burger.addEventListener('click',function(){toggle(!links.classList.contains('open'));});
+    overlay.addEventListener('click',function(){toggle(false);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')toggle(false);});
+  })();
+</script>

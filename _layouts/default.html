@@ -1,0 +1,21 @@
+{% comment %}
+  =====================================================================
+  THE PAGE FRAME used by every page that starts with "layout: default".
+  It wraps each page's own content in the shared pieces:
+    _includes/head.html          tracking, fonts, favicon, share tags, styles
+    _includes/nav.html           top menu   (turn off with "nav: false")
+    _includes/footer.html        footer     ("footer: slim" for the short one)
+    _includes/site-styles.css    styles shared by every page
+  You shouldn't need to edit this file. Edit the files above instead.
+  =====================================================================
+{% endcomment %}<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+{% include head.html %}
+</head>
+<body>
+{% unless page.nav == false %}{% include nav.html %}{% endunless %}
+{{ content }}
+{% include footer.html %}
+</body>
+</html>

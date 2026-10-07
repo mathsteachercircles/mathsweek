@@ -1,83 +1,17 @@
-<!DOCTYPE html>
-<html lang="en-AU">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maths Week Australia — 10–14 May 2027</title>
-<meta name="description" content="Australia's national week of maths is coming back. 10–14 May 2027. Free for every teacher. Be first to know.">
-<!-- Social sharing preview -->
-<meta property="og:title" content="Maths Week Australia is coming">
-<meta property="og:description" content="One week. Every K-12 classroom in the country. Free. Register now.">
-<meta property="og:url" content="https://mathsweek.au">
-<meta property="og:type" content="website">
-<!-- Social share image: 1200x630 tile at socials/MWA_socialshare.png.
-     Must be a full absolute URL — relative paths fail on most scrapers.
-     To replace it, upload under a NEW filename (…_v2.png) and change the
-     URLs here; overwriting in place leaves the old image cached for days. -->
-<meta property="og:image" content="https://mathsweek.au/socials/MWA_socialshare.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Maths Week Australia — 10–14 May 2027">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mathsweek.au/socials/MWA_socialshare.png">
-<link rel="canonical" href="https://mathsweek.au">
-<!-- Favicon: gold square, MWA in deep gum -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23FFD753'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial,sans-serif' font-weight='bold' font-size='24' fill='%230B3D24'%3EMWA%3C/text%3E%3C/svg%3E">
-<!-- ================================================================
-     GOOGLE ANALYTICS (GA4): in your GA account go to Admin → Data
-     streams → Add stream → Web → enter mathsweek.au. Copy the
-     "Measurement ID" (looks like G-ABC123XYZ) and replace BOTH
-     G-ZDCWPXVEBB below with it.
-     ================================================================ -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZDCWPXVEBB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZDCWPXVEBB');
-</script>
-<!-- Structured data so Google can show MWA as an Event in search results -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Event",
-  "name": "Maths Week Australia",
-  "startDate": "2027-05-10",
-  "endDate": "2027-05-14",
-  "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-  "eventStatus": "https://schema.org/EventScheduled",
-  "location": {"@type": "VirtualLocation", "url": "https://mathsweek.au"},
-  "description": "Five days of free, zero-prep maths challenges for every K–12 classroom in Australia.",
-  "isAccessibleForFree": true,
-  "organizer": {"@type": "Organization", "name": "Maths Teacher Circles", "url": "https://www.mathsteachercircles.org/"},
-  "url": "https://mathsweek.au"
-}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Be+Vietnam+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+---
+layout: default
+title: "Maths Week Australia — 10–14 May 2027"
+description: "Australia's national week of maths is coming back. 10–14 May 2027. Free for every teacher. Be first to know."
+share_title: "Maths Week Australia is coming"
+share_description: "One week. Every K-12 classroom in the country. Free. Register now."
+# The homepage opens straight onto the hero, so no top menu here.
+nav: false
+---
 <style>
-  /* Backup request in case the <link> above is stripped (e.g. some previews) */
-  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Be+Vietnam+Pro:wght@300;400;600;700&display=swap');
-  :root{
-    --green:#00843D;   /* Aussie green — buttons, headings, big shapes */
-    --gold:#FFD753;    /* MWA gold — heroes, banners */
-    --coral:#E94F3D;   /* accent — badges, stickers */
-    --teal:#2FB6BC;    /* accent — links, tags */
-    --ink:#0B3D24;     /* deep gum — body text */
-    --cream:#FFF6DA;   /* base — page background */
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:'Be Vietnam Pro',sans-serif;
-    font-weight:300;
-    color:var(--ink);
-    background:var(--cream);
-    line-height:1.6;
-  }
+  /* Styles for this page only. Shared styles (colours, menu, footer) live in _includes/site-styles.css */
+  body{line-height:1.6;}
   /* Display font: Caveat Bold. Fallbacks stay handwritten if it can't load. */
-  h1,h2,.coming{font-family:'Caveat','Bradley Hand','Marker Felt','Segoe Print','Comic Sans MS',cursive;font-weight:700;line-height:1.05;}
+  .coming{font-family:'Caveat','Bradley Hand','Marker Felt','Segoe Print','Comic Sans MS',cursive;font-weight:700;line-height:1.05;}
   .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
 
   /* ---------- HERO ---------- */
@@ -223,33 +157,25 @@
     opacity:.6;display:flex;align-items:center;justify-content:center;
     font-weight:700;font-size:.85rem;margin:0 auto;transform:rotate(2deg);
   }
-
-  /* ---------- FOOTER ---------- */
-  footer{padding:40px 0;text-align:center;font-size:.85rem;font-weight:400;}
-  .footer-links{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;}
-  .footer-links a{color:var(--ink);text-decoration:none;font-weight:700;font-size:.95rem;}
-  .footer-links a:hover{color:var(--green);}
-  footer a{color:var(--teal);font-weight:600;text-decoration:none;}
 </style>
-     <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2131205674137564');
-fbq('track', 'PageView');
+
+<!-- Structured data so Google can show MWA as an Event in search results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Maths Week Australia",
+  "startDate": "2027-05-10",
+  "endDate": "2027-05-14",
+  "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {"@type": "VirtualLocation", "url": "https://mathsweek.au"},
+  "description": "Five days of free, zero-prep maths challenges for every K–12 classroom in Australia.",
+  "isAccessibleForFree": true,
+  "organizer": {"@type": "Organization", "name": "Maths Teacher Circles", "url": "https://www.mathsteachercircles.org/"},
+  "url": "https://mathsweek.au"
+}
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2131205674137564&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-</head>
-<body>
 
 <!-- ============ HERO ============ -->
 <section class="hero">
@@ -409,7 +335,7 @@ src="https://www.facebook.com/tr?id=2131205674137564&ev=PageView&noscript=1"
         <a class="supporter" href="https://amsi.org.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/amsi.png" alt="Australian Mathematical Sciences Institute"></a>
         <a class="supporter" href="https://atsima.com/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/atsima.png" alt="Aboriginal &amp; Torres Strait Islander Mathematics Alliance"></a>
         <a class="supporter" href="https://www.canberramaths.org.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/cma.png" alt="Canberra Mathematical Association"></a>
-        <a class="supporter" href="hhttps://www.mansw.nsw.edu.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/mansw.png" alt="Mathematical Association of NSW Inc"></a>
+        <a class="supporter" href="https://www.mansw.nsw.edu.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/mansw.png" alt="Mathematical Association of NSW Inc"></a>
         <a class="supporter" href="https://masaonline.org.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/masa.png" alt="The Mathematical Association of South Australia"></a>
         <a class="supporter" href="https://mat.tas.edu.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/mat.png" alt="Mathematical Association of Tasmania"></a>
         <a class="supporter" href="https://www.mav.vic.edu.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/mav.png" alt="The Mathematical Association of Victoria"></a>
@@ -453,7 +379,7 @@ src="https://www.facebook.com/tr?id=2131205674137564&ev=PageView&noscript=1"
         <span class="supporter"><img loading="lazy" decoding="async" src="Schools/st-marys-primary-scone.jpg" alt="St Mary's Primary Scone"></span>
         <span class="supporter"><img loading="lazy" decoding="async" src="Schools/the-heights-school.png" alt="The Heights School"></span>
         <span class="supporter"><img loading="lazy" decoding="async" src="Schools/st-marys-catholic-primary-school.png" alt="St Mary's Catholic Primary School"></span>
-        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/st-francis-xavier-west-mackay.png" alt="St Francis Xavoer West Mackay"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/st-francis-xavier-west-mackay.png" alt="St Francis Xavier West Mackay"></span>
         <span class="supporter"><img loading="lazy" decoding="async" src="Schools/killester-college.png" alt="Killester College"></span>
         <span class="supporter"><img loading="lazy" decoding="async" src="Schools/st-johns-grammar-school.png" alt="St John's Grammar School"></span>
         <span class="supporter"><img loading="lazy" decoding="async" src="Schools/west-wallsend-primary-school.png" alt="West Wallsend Primary School"></span>
@@ -477,18 +403,6 @@ src="https://www.facebook.com/tr?id=2131205674137564&ev=PageView&noscript=1"
   <p style="max-width:560px;margin:0 auto 24px;font-size:clamp(1.05rem,2.4vw,1.3rem);font-weight:400;line-height:1.45;text-wrap:balance;">Free for every teacher, in every school. The good stuff starts now.</p>
   <a href="#register" style="display:inline-block;font-weight:700;font-size:1.05rem;background:var(--green);color:#fff;text-decoration:none;border-radius:999px;padding:16px 40px;box-shadow:3px 4px 0 rgba(11,61,36,.25);">Count me in →</a>
 </section>
-
-<footer>
-  <div class="wrap">
-    <div class="footer-links">
-      <a href="https://mathsweek.au">Register</a>
-      <a href="/about">About</a>
-      <a href="/contact">Contact Us</a>
-    </div>
-    <a href="https://mathsweek.au">mathsweek.au</a> · 10–14 May 2027<br>
-    An initiative of Maths Teacher Circles · <a href="/privacy" style="font-weight:400;color:inherit;">Privacy</a>
-  </div>
-</footer>
 
 <script>
   // Countdown to Mon 10 May 2027, 00:00 Australian Eastern Standard Time (UTC+10)
@@ -589,5 +503,3 @@ src="https://www.facebook.com/tr?id=2131205674137564&ev=PageView&noscript=1"
     }
   });
 </script>
-</body>
-</html>
