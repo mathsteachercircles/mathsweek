@@ -1,9 +1,9 @@
 ---
 layout: default
 title: "Maths Week Australia — 10–14 May 2027"
-description: "Australia's national week of maths is coming back. 10–14 May 2027. Free for every teacher. Be first to know."
+description: "Australia's national week of maths is coming back. 10–14 May 2027. Free for every teacher. Register to go in the draw for classroom maths prizes."
 share_title: "Maths Week Australia is coming"
-share_description: "One week. Every K-12 classroom in the country. Free. Register now."
+share_description: "One week. Every K-12 classroom in the country. Free. Register now and go in the draw to win maths prizes for your classroom."
 # The homepage opens straight onto the hero, so no top menu here.
 nav: false
 ---
@@ -33,6 +33,18 @@ nav: false
     font-weight:700;font-size:1.05rem;letter-spacing:.04em;
     padding:10px 26px;border-radius:999px;transform:rotate(-3deg);
     box-shadow:3px 4px 0 rgba(11,61,36,.25);
+  }
+  /* Second sticker beside the countdown */
+  .prize-badge{
+    display:inline-block;background:var(--green);color:#fff;
+    font-weight:700;font-size:1.05rem;letter-spacing:.04em;
+    padding:10px 26px;border-radius:999px;transform:rotate(2deg);
+    box-shadow:3px 4px 0 rgba(11,61,36,.25);
+  }
+  /* Small phones: shrink both stickers so they sit on one row */
+  @media(max-width:480px){
+    .date-badge,.prize-badge{font-size:.9rem;padding:8px 16px;}
+    .badge-row{gap:10px;}
   }
   /* Desktop gutters: sections float as rounded bands */
   @media(min-width:900px){
@@ -88,6 +100,51 @@ nav: false
   .doodle.tl{top:30px;left:4%;transform:rotate(15deg);}
   .doodle.br{bottom:40px;right:5%;transform:rotate(-10deg);}
   @media(max-width:640px){.doodle{display:none;}}
+
+  /* ---------- PRIZE DRAW ---------- */
+  .prizes{padding:72px 0 8px;text-align:center;}
+  /* Raffle ticket: gold card, dashed tear line, half-circle notches each end */
+  .ticket{
+    position:relative;display:flex;max-width:780px;margin:0 auto;text-align:left;
+    background:var(--gold);border-radius:28px;
+    box-shadow:4px 5px 0 rgba(11,61,36,.25);transform:rotate(-1deg);
+  }
+  /* The notches are cream circles laid over the edges. They must match the
+     page background — if this section ever gets its own background colour,
+     change these to match. */
+  .ticket::before,.ticket::after{
+    content:'';position:absolute;top:50%;width:34px;height:34px;margin-top:-17px;
+    border-radius:50%;background:var(--cream);
+  }
+  .ticket::before{left:-17px;}
+  .ticket::after{right:-17px;}
+  .ticket-stub{
+    flex:0 0 180px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:6px;padding:28px 16px 28px 24px;text-align:center;
+    border-right:3px dashed rgba(11,61,36,.4);
+  }
+  .ticket-stub svg{display:block;width:80px;height:80px;margin-bottom:8px;}
+  .stub-label{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;}
+  .stub-date{font-size:1.15rem;font-weight:700;line-height:1.2;}
+  .ticket-main{flex:1;padding:36px 44px 32px 36px;}
+  .ticket .tag{background:var(--coral);}
+  .ticket h2{font-size:clamp(2.1rem,5vw,2.9rem);line-height:1.05;margin-bottom:14px;}
+  .ticket p{font-size:1.02rem;margin-bottom:22px;}
+  .ticket .already{font-size:.88rem;margin:14px 0 0;}
+  .btn-green{
+    display:inline-block;font-family:inherit;font-weight:700;font-size:1.05rem;
+    background:var(--green);color:#fff;text-decoration:none;border-radius:999px;
+    padding:14px 34px;box-shadow:3px 4px 0 rgba(11,61,36,.25);
+  }
+  .btn-green:hover{transform:rotate(-1deg) scale(1.03);}
+  @media(max-width:640px){
+    .ticket{flex-direction:column;}
+    .ticket-stub{flex:none;flex-direction:row;gap:14px;padding:22px 28px 18px;
+      border-right:none;border-bottom:3px dashed rgba(11,61,36,.4);}
+    .ticket-stub svg{width:44px;height:44px;margin-bottom:0;}
+    .ticket-stub .stub-text{text-align:left;}
+    .ticket-main{padding:26px 28px 30px;}
+  }
 
   /* ---------- TEASE ---------- */
   .tease{padding:72px 0;}
@@ -184,16 +241,21 @@ nav: false
   <div class="wrap">
     <div class="badge-row">
       <span class="date-badge" id="countdown"></span>
+      <span class="prize-badge">★ Win maths prizes</span>
     </div>
     <h1>Maths Week Australia</h1>
     <span class="coming">it's coming.</span>
    <p class="lead" style="margin-bottom:14px;">One week in May 2027. Every classroom (K-12) in the country. The biggest celebration of maths Australia has seen — and it's <strong style="font-weight:700">completely free</strong>.</p>
 
-   <p class="lead" style="margin-bottom:32px;"><strong style="font-weight:700">Teachers and school leaders</strong>, get your first free resources now:</p>
+   <!-- #register is the jump target for every "Register" / "Count me in" link
+        (here and on other pages). It sits on this line rather than the form so
+        people land with the invitation above the fields. The form itself is
+        #signup-form. -->
+   <p class="lead" id="register" style="margin-bottom:32px;scroll-margin-top:24px;"><strong style="font-weight:700">Teachers and school leaders</strong>, sign up now to get your first free resources and go in the draw to <strong style="font-weight:700">win cool maths prizes</strong> for your classroom and school:</p>
     <!-- Kit form "Maths Week Australia" (ID 10052335) — wired and live.
          Submissions post to Kit in the background; the on-page success
          message below shows on success. -->
-    <form class="signup" id="register" action="https://app.kit.com/forms/10052335/subscriptions" method="post">
+    <form class="signup" id="signup-form" action="https://app.kit.com/forms/10052335/subscriptions" method="post">
       <!-- Spam trap. Invisible to people, irresistible to bots — if it comes
            back filled, the submit handler drops it silently. Keep it
            off-screen rather than display:none (better bots skip hidden
@@ -203,9 +265,9 @@ nav: false
       <div class="fields">
         <input type="text" name="fields[first_name]" placeholder="First name" required>
         <input type="email" name="email_address" placeholder="Email" required>
-        <button type="submit">Yes, count me in →</button>
+        <button type="submit">Yes, put me in the draw →</button>
       </div>
-      <p class="micro">Get Maths Week resources and updates, straight to you (no spam, just the good stuff).</p>
+      <p class="micro">Winners drawn during Maths Week. Plus, resources and updates, straight to you (no spam, just the good stuff).</p>
     </form>
     <!-- NOTE: with double opt-in on in Kit, a successful post does NOT mean
          the person is registered — they are registered when they click the
@@ -213,7 +275,7 @@ nav: false
     <div class="success" id="success">
       <strong>Almost there — check your email 📬</strong><br>
       We've just sent you a confirmation link (from info@mathsweek.au). Click it to finalise your
-      registration.<br>
+      registration and <strong>lock in your entry in the prize draw</strong>.<br>
       <span style="font-size:.9rem">Can't see it? Have a look in junk/spam or Promotions, or email
       <a href="mailto:info@mathsweek.au">info@mathsweek.au</a> and we'll sort it out.</span><br><br>
       <strong>One more thing:</strong> forward this to one teacher who'd love it. That's how weeks like this get big.
@@ -223,6 +285,61 @@ nav: false
       Something broke at our end, not yours. Email
       <a href="mailto:info@mathsweek.au?subject=Register%20me%20for%20Maths%20Week%20Australia">info@mathsweek.au</a>
       and we'll register you manually so you won't miss out.
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRIZE DRAW ============
+     Link straight here with mathsweek.au/#prizes -->
+<section class="prizes" id="prizes">
+  <div class="wrap">
+    <div class="ticket">
+      <div class="ticket-stub">
+        <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M32 19 C27 7 13 8 17 19 Z" fill="#FFF6DA" stroke="#0B3D24" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M32 19 C37 7 51 8 47 19 Z" fill="#FFF6DA" stroke="#0B3D24" stroke-width="3" stroke-linejoin="round"/>
+          <rect x="12" y="30" width="40" height="26" rx="3" fill="#00843D" stroke="#0B3D24" stroke-width="3"/>
+          <rect x="8" y="19" width="48" height="12" rx="3" fill="#00843D" stroke="#0B3D24" stroke-width="3"/>
+          <rect x="28" y="20.5" width="8" height="9" fill="#FFF6DA"/>
+          <rect x="28" y="32.5" width="8" height="22" fill="#FFF6DA"/>
+        </svg>
+        <div class="stub-text">
+          <div class="stub-label">Winners drawn</div>
+          <div class="stub-date">10–14 May</div>
+        </div>
+      </div>
+      <div class="ticket-main">
+        <span class="tag">PRIZE DRAW</span>
+        <h2>Win cool maths prizes for your classroom &amp; school</h2>
+        <p>Register for Maths Week Australia and you're in the draw. Free to enter, winners drawn during the week, and more prizes landing between now and May.</p>
+        <a class="btn-green" href="#register">Put me in the draw →</a>
+        <p class="already">Already registered? You're already in. Good luck!</p>
+        <!-- Once prize terms & conditions are published, add a link here, e.g.
+             <a href="/prize-terms">Prize draw terms</a> -->
+      </div>
+    </div>
+
+    <div class="supporters">
+      <h3>Prizes generously donated by</h3>
+      <!-- ================================================================
+           ADDING A PRIZE DONOR:
+           Logo badge, LINKED to their website (opens in new tab):
+             <a class="supporter" href="https://their-website.com.au" target="_blank" rel="noopener">
+               <img loading="lazy" decoding="async" src="Supporters/org-name.png" alt="Organisation Name" onerror="this.replaceWith(this.alt)"></a>
+           Logo badge, no link yet:
+             <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/org-name.png" alt="Organisation Name" onerror="this.replaceWith(this.alt)"></span>
+           Until the logo file is uploaded, the badge shows the alt text
+           (the organisation's name) instead of a broken image — so a donor
+           can go up the day they say yes and the logo can follow.
+           Logos: max 400px wide, 128px high, PNG, into Supporters/.
+           Paste new lines inside .logo-strip below.
+           ================================================================ -->
+      <div class="logo-strip">
+        <a class="supporter" href="https://thinksquare.com.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/think-square.png" alt="Think Square" onerror="this.replaceWith(this.alt)"></a>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/mathematicalendar.png" alt="Mathematicalendar" onerror="this.replaceWith(this.alt)"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/maths-heroes.png" alt="Maths Heroes" onerror="this.replaceWith(this.alt)"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/number-hive.png" alt="Number Hive" onerror="this.replaceWith(this.alt)"></span>
+      </div>
     </div>
   </div>
 </section>
@@ -471,7 +588,7 @@ nav: false
   // form submit. Every realistic cause of failure here (visitor offline, Kit
   // down, Kit rate-limiting) breaks a native submit too — it would just dump
   // the person on a broken Kit page instead of ours.
-  var registerForm = document.getElementById('register');
+  var registerForm = document.getElementById('signup-form');
   var formTouched  = false;
   registerForm.addEventListener('focusin', function(){ formTouched = true; }, {once:true});
 
