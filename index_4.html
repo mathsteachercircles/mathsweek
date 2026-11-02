@@ -1,0 +1,627 @@
+---
+layout: default
+title: "Maths Week Australia — 10–14 May 2027"
+description: "Australia's national week of maths is coming back. 10–14 May 2027. Free for every teacher. Register to go in the draw for classroom maths prizes."
+share_title: "Maths Week Australia is coming"
+share_description: "One week. Every K-12 classroom in the country. Free. Register now and go in the draw to win maths prizes for your classroom."
+# The homepage opens straight onto the hero, so no top menu here.
+nav: false
+---
+<style>
+  /* Styles for this page only. Shared styles (colours, menu, footer) live in _includes/site-styles.css */
+  body{line-height:1.6;}
+  /* Display font: Caveat Bold. Fallbacks stay handwritten if it can't load. */
+  .coming{font-family:'Caveat','Bradley Hand','Marker Felt','Segoe Print','Comic Sans MS',cursive;font-weight:700;line-height:1.05;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background-color:var(--gold);
+    padding:72px 0 88px;position:relative;overflow:hidden;text-align:center;
+  }
+  /* Triangles pattern: full tone bottom-left → muted mid → gone top-right */
+  .hero::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='190' height='190' viewBox='0 0 190 190'%3E%3Cg opacity='.55'%3E%3Cpath d='M28 20 L40 40 L16 40 Z' fill='%23E8B923'/%3E%3Cpath d='M120 34 L132 54 L108 54 Z' fill='none' stroke='%23E8B923' stroke-width='3'/%3E%3Cpath d='M70 96 L82 76 L58 76 Z' fill='%23FFF6DA'/%3E%3Cpath d='M160 110 L172 130 L148 130 Z' fill='%23E8B923'/%3E%3Cpath d='M30 150 L42 170 L18 170 Z' fill='none' stroke='%23FFF6DA' stroke-width='3'/%3E%3Cpath d='M105 155 L117 135 L93 135 Z' fill='none' stroke='%23E8B923' stroke-width='3'/%3E%3C/g%3E%3C/svg%3E");
+    -webkit-mask-image:linear-gradient(to top right, rgba(0,0,0,1) 0%, rgba(0,0,0,.5) 50%, rgba(0,0,0,0) 82%);
+    mask-image:linear-gradient(to top right, rgba(0,0,0,1) 0%, rgba(0,0,0,.5) 50%, rgba(0,0,0,0) 82%);
+  }
+  .hero .wrap{position:relative;z-index:2;}
+  .badge-row{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;margin-bottom:28px;}
+  .date-badge{
+    display:inline-block;background:var(--coral);color:#fff;
+    font-weight:700;font-size:1.05rem;letter-spacing:.04em;
+    padding:10px 26px;border-radius:999px;transform:rotate(-3deg);
+    box-shadow:3px 4px 0 rgba(11,61,36,.25);
+  }
+  /* Second sticker beside the countdown */
+  .prize-badge{
+    display:inline-block;background:var(--green);color:#fff;
+    font-weight:700;font-size:1.05rem;letter-spacing:.04em;
+    padding:10px 26px;border-radius:999px;transform:rotate(2deg);
+    box-shadow:3px 4px 0 rgba(11,61,36,.25);
+  }
+  /* Small phones: shrink both stickers so they sit on one row */
+  @media(max-width:480px){
+    .date-badge,.prize-badge{font-size:.9rem;padding:8px 16px;}
+    .badge-row{gap:10px;}
+  }
+  /* Desktop gutters: sections float as rounded bands */
+  @media(min-width:900px){
+    .band{max-width:1240px;width:calc(100% - 80px);margin:28px auto;border-radius:40px;}
+  }
+  .hero h1{font-size:clamp(3.2rem,9vw,6.2rem);color:var(--ink);}
+  .hero .coming{
+    font-weight:700;
+    font-size:clamp(2rem,5vw,3rem);color:var(--green);
+    display:block;transform:rotate(-2deg);margin:4px 0 22px;
+  }
+  .hero p.lead{
+    font-size:clamp(1.05rem,2.4vw,1.3rem);font-weight:400;
+    max-width:560px;margin:0 auto 12px;
+  }
+  .countdown{
+    display:inline-block;background:var(--cream);border-radius:999px;
+    padding:8px 18px;font-weight:600;font-size:.95rem;transform:rotate(2deg);
+  }
+  /* form */
+  .signup{max-width:560px;margin:0 auto;}
+  .signup .fields{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+  .signup input{
+    font-family:inherit;font-size:1rem;font-weight:400;color:var(--ink);
+    background:var(--cream);border:2px solid var(--ink);border-radius:999px;
+    padding:14px 22px;flex:1 1 180px;min-width:0;
+  }
+  .signup input::placeholder{color:#4d6b58;}
+  .signup button{
+    font-family:inherit;font-size:1.05rem;font-weight:700;
+    background:var(--green);color:#fff;border:none;border-radius:999px;
+    padding:16px 36px;cursor:pointer;flex:1 1 100%;
+    box-shadow:3px 4px 0 rgba(11,61,36,.25);
+    transition:transform .1s ease;margin-top:4px;
+  }
+  .signup button:hover{transform:scale(1.03) rotate(-1deg);}
+  .micro{font-size:.85rem;margin-top:14px;font-weight:400;}
+  .success{
+    display:none;background:var(--cream);border-radius:24px;
+    padding:28px;font-size:1.1rem;font-weight:400;
+  }
+  .success strong{font-weight:700;}
+  .success a{color:var(--green);font-weight:700;}
+  /* Shown if the signup post to Kit fails — see showSignupError() */
+  .error{
+    display:none;background:var(--cream);border:2px solid var(--coral);
+    border-radius:24px;padding:28px;font-size:1.1rem;font-weight:400;
+  }
+  .error strong{font-weight:700;}
+  .error a{color:var(--green);font-weight:700;}
+  /* doodle */
+  .doodle{position:absolute;pointer-events:none;}
+  .doodle.tl{top:30px;left:4%;transform:rotate(15deg);}
+  .doodle.br{bottom:40px;right:5%;transform:rotate(-10deg);}
+  @media(max-width:640px){.doodle{display:none;}}
+
+  /* ---------- PRIZE DRAW ---------- */
+  .prizes{padding:72px 0 8px;text-align:center;}
+  /* Raffle ticket: gold card, dashed tear line, half-circle notches each end */
+  .ticket{
+    position:relative;display:flex;max-width:780px;margin:0 auto;text-align:left;
+    background:var(--gold);border-radius:28px;
+    box-shadow:4px 5px 0 rgba(11,61,36,.25);transform:rotate(-1deg);
+  }
+  /* The notches are cream circles laid over the edges. They must match the
+     page background — if this section ever gets its own background colour,
+     change these to match. */
+  .ticket::before,.ticket::after{
+    content:'';position:absolute;top:50%;width:34px;height:34px;margin-top:-17px;
+    border-radius:50%;background:var(--cream);
+  }
+  .ticket::before{left:-17px;}
+  .ticket::after{right:-17px;}
+  .ticket-stub{
+    flex:0 0 180px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:6px;padding:28px 16px 28px 24px;text-align:center;
+    border-right:3px dashed rgba(11,61,36,.4);
+  }
+  .ticket-stub svg{display:block;width:80px;height:80px;margin-bottom:8px;}
+  .stub-label{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;}
+  .stub-date{font-size:1.15rem;font-weight:700;line-height:1.2;}
+  .ticket-main{flex:1;padding:36px 44px 32px 36px;}
+  .ticket .tag{background:var(--coral);}
+  .ticket h2{font-size:clamp(2.1rem,5vw,2.9rem);line-height:1.05;margin-bottom:14px;}
+  .ticket p{font-size:1.02rem;margin-bottom:22px;}
+  .ticket .already{font-size:.88rem;margin:14px 0 0;}
+  .btn-green{
+    display:inline-block;font-family:inherit;font-weight:700;font-size:1.05rem;
+    background:var(--green);color:#fff;text-decoration:none;border-radius:999px;
+    padding:14px 34px;box-shadow:3px 4px 0 rgba(11,61,36,.25);
+  }
+  .btn-green:hover{transform:rotate(-1deg) scale(1.03);}
+  @media(max-width:640px){
+    .ticket{flex-direction:column;}
+    .ticket-stub{flex:none;flex-direction:row;gap:14px;padding:22px 28px 18px;
+      border-right:none;border-bottom:3px dashed rgba(11,61,36,.4);}
+    .ticket-stub svg{width:44px;height:44px;margin-bottom:0;}
+    .ticket-stub .stub-text{text-align:left;}
+    .ticket-main{padding:26px 28px 30px;}
+  }
+
+  /* ---------- TEASE ---------- */
+  .tease{padding:72px 0;}
+  .tease h2{font-size:clamp(2.4rem,6vw,3.4rem);text-align:center;margin-bottom:44px;transform:rotate(-1deg);}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;}
+  .card{
+    background:#fff;border-radius:28px;padding:32px 28px;
+    box-shadow:4px 5px 0 rgba(11,61,36,.12);
+  }
+  .card:nth-child(2){transform:rotate(1deg);}
+  .card:nth-child(1){transform:rotate(-1deg);}
+  .card h3{font-weight:700;font-size:1.15rem;margin-bottom:10px;}
+  .card p{font-size:.98rem;}
+  .tag{
+    display:inline-block;font-size:.78rem;font-weight:700;color:#fff;
+    background:var(--teal);border-radius:999px;padding:3px 14px;
+    margin-bottom:14px;transform:rotate(-2deg);
+  }
+  .card:nth-child(3) .tag{background:var(--coral);}
+
+  /* ---------- SHARE ---------- */
+  .share{background:var(--green);color:var(--cream);text-align:center;padding:72px 0;}
+  .share h2{font-size:clamp(2.4rem,6vw,3.4rem);color:#fff;transform:rotate(-1deg);margin-bottom:14px;}
+  .share p{max-width:520px;margin:0 auto 32px;font-size:1.05rem;}
+  .share-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn-gold,.btn-outline{
+    font-family:inherit;font-size:1rem;font-weight:700;border-radius:999px;
+    padding:14px 32px;cursor:pointer;text-decoration:none;display:inline-block;
+  }
+  .btn-gold{background:var(--gold);color:var(--ink);border:none;box-shadow:3px 4px 0 rgba(0,0,0,.2);}
+  .btn-outline{background:transparent;color:var(--cream);border:2px solid var(--cream);}
+  .btn-gold:hover,.btn-outline:hover{transform:rotate(-1deg) scale(1.03);}
+
+  /* ---------- WHO'S BEHIND THIS ---------- */
+  .behind{padding:64px 0 56px;text-align:center;}
+  .behind h2{font-size:clamp(2.2rem,5vw,3rem);transform:rotate(-1deg);margin-bottom:24px;}
+  .mtc-logo img{height:72px;display:inline-block;}
+  .mtc-logo{margin-bottom:8px;}
+  .supporters{margin-top:44px;}
+  .supporters h3{
+    font-size:.85rem;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;margin-bottom:20px;
+  }
+  .logo-strip{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap;}
+  .supporter{
+    background:#fff;border:2px solid var(--ink);border-radius:999px;
+    padding:10px 24px;font-weight:600;font-size:.95rem;
+    text-decoration:none;color:inherit;display:inline-block;
+  }
+  a.supporter:hover{transform:rotate(-1deg) scale(1.04);}
+  .supporter img{height:64px;max-width:200px;object-fit:contain;display:block;}
+  .join-in{font-size:.92rem;font-weight:400;margin-top:22px;}
+  .join-in a{color:var(--green);font-weight:700;}
+  /* ambassadors */
+  .amb-grid{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;max-width:760px;margin:0 auto;}
+  .amb{width:150px;text-align:center;}
+  .amb img{
+    width:96px;height:96px;border-radius:50%;object-fit:cover;
+    border:3px solid var(--ink);box-shadow:3px 4px 0 rgba(11,61,36,.15);
+    transform:rotate(-2deg);
+  }
+  .amb:nth-child(even) img{transform:rotate(2deg);}
+  .amb .amb-name{font-weight:700;font-size:.95rem;margin-top:10px;line-height:1.3;}
+  .amb .amb-role{font-size:.82rem;font-weight:400;}
+  .amb-placeholder{
+    width:96px;height:96px;border-radius:50%;border:3px dashed var(--ink);
+    opacity:.6;display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:.85rem;margin:0 auto;transform:rotate(2deg);
+  }
+</style>
+
+<!-- Structured data so Google can show MWA as an Event in search results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Maths Week Australia",
+  "startDate": "2027-05-10",
+  "endDate": "2027-05-14",
+  "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {"@type": "VirtualLocation", "url": "https://mathsweek.au"},
+  "description": "Five days of free, zero-prep maths challenges for every K–12 classroom in Australia.",
+  "isAccessibleForFree": true,
+  "organizer": {"@type": "Organization", "name": "Maths Teacher Circles", "url": "https://www.mathsteachercircles.org/"},
+  "url": "https://mathsweek.au"
+}
+</script>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <svg class="doodle tl" width="70" height="70" viewBox="0 0 70 70"><path d="M15 35 L55 35 M35 15 L35 55" stroke="#E94F3D" stroke-width="7" stroke-linecap="round"/></svg>
+  <svg class="doodle br" width="80" height="46" viewBox="0 0 80 46"><path d="M6 36 Q20 4 40 22 T74 12" stroke="#2FB6BC" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
+  <div class="wrap">
+    <div class="badge-row">
+      <span class="date-badge" id="countdown"></span>
+      <span class="prize-badge">★ Win maths prizes</span>
+    </div>
+    <h1>Maths Week Australia</h1>
+    <span class="coming">it's coming.</span>
+   <p class="lead" style="margin-bottom:14px;">One week in May 2027. Every classroom (K-12) in the country. The biggest celebration of maths Australia has seen — and it's <strong style="font-weight:700">completely free</strong>.</p>
+
+   <!-- #register is the jump target for every "Register" / "Count me in" link
+        (here and on other pages). It sits on this line rather than the form so
+        people land with the invitation above the fields. The form itself is
+        #signup-form. -->
+   <p class="lead" id="register" style="margin-bottom:32px;scroll-margin-top:24px;"><strong style="font-weight:700">Teachers and school leaders</strong>, sign up now to get your first free resources and go in the draw to <strong style="font-weight:700">win cool maths prizes</strong> for your classroom and school:</p>
+    <!-- Kit form "Maths Week Australia" (ID 10052335) — wired and live.
+         Submissions post to Kit in the background; the on-page success
+         message below shows on success. -->
+    <form class="signup" id="signup-form" action="https://app.kit.com/forms/10052335/subscriptions" method="post">
+      <!-- Spam trap. Invisible to people, irresistible to bots — if it comes
+           back filled, the submit handler drops it silently. Keep it
+           off-screen rather than display:none (better bots skip hidden
+           fields), and never add "required". Do not remove or restyle. -->
+      <input type="text" name="mwa_hp" tabindex="-1" autocomplete="off" aria-hidden="true"
+             style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;padding:0;border:0">
+      <div class="fields">
+        <input type="text" name="fields[first_name]" placeholder="First name" required>
+        <input type="email" name="email_address" placeholder="Email" required>
+        <button type="submit">Yes, put me in the draw →</button>
+      </div>
+      <p class="micro">Winners drawn during Maths Week. Plus, resources and updates, straight to you (no spam, just the good stuff).</p>
+    </form>
+    <!-- NOTE: with double opt-in on in Kit, a successful post does NOT mean
+         the person is registered — they are registered when they click the
+         link in the confirmation email. This copy must say so. -->
+    <div class="success" id="success">
+      <strong>Almost there — check your email 📬</strong><br>
+      We've just sent you a confirmation link (from info@mathsweek.au). Click it to finalise your
+      registration and <strong>lock in your entry in the prize draw</strong>.<br>
+      <span style="font-size:.9rem">Can't see it? Have a look in junk/spam or Promotions, or email
+      <a href="mailto:info@mathsweek.au">info@mathsweek.au</a> and we'll sort it out.</span><br><br>
+      <strong>One more thing:</strong> forward this to one teacher who'd love it. That's how weeks like this get big.
+    </div>
+    <div class="error" id="error">
+      <strong>Hmm — that didn't go through.</strong><br>
+      Something broke at our end, not yours. Email
+      <a href="mailto:info@mathsweek.au?subject=Register%20me%20for%20Maths%20Week%20Australia">info@mathsweek.au</a>
+      and we'll register you manually so you won't miss out.
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRIZE DRAW ============
+     Link straight here with mathsweek.au/#prizes -->
+<section class="prizes" id="prizes">
+  <div class="wrap">
+    <div class="ticket">
+      <div class="ticket-stub">
+        <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M32 19 C27 7 13 8 17 19 Z" fill="#FFF6DA" stroke="#0B3D24" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M32 19 C37 7 51 8 47 19 Z" fill="#FFF6DA" stroke="#0B3D24" stroke-width="3" stroke-linejoin="round"/>
+          <rect x="12" y="30" width="40" height="26" rx="3" fill="#00843D" stroke="#0B3D24" stroke-width="3"/>
+          <rect x="8" y="19" width="48" height="12" rx="3" fill="#00843D" stroke="#0B3D24" stroke-width="3"/>
+          <rect x="28" y="20.5" width="8" height="9" fill="#FFF6DA"/>
+          <rect x="28" y="32.5" width="8" height="22" fill="#FFF6DA"/>
+        </svg>
+        <div class="stub-text">
+          <div class="stub-label">Winners drawn</div>
+          <div class="stub-date">10–14 May</div>
+        </div>
+      </div>
+      <div class="ticket-main">
+        <span class="tag">PRIZE DRAW</span>
+        <h2>Win cool maths prizes for your classroom &amp; school</h2>
+        <p>Register for Maths Week Australia and you're in the draw. Free to enter, winners drawn during the week, and more prizes landing between now and May.</p>
+        <a class="btn-green" href="#register">Put me in the draw →</a>
+        <p class="already">Already registered? You're already in. Good luck!</p>
+        <!-- Once prize terms & conditions are published, add a link here, e.g.
+             <a href="/prize-terms">Prize draw terms</a> -->
+      </div>
+    </div>
+
+    <div class="supporters">
+      <h3>Prizes generously donated by</h3>
+      <!-- ================================================================
+           ADDING A PRIZE DONOR:
+           Logo badge, LINKED to their website (opens in new tab):
+             <a class="supporter" href="https://their-website.com.au" target="_blank" rel="noopener">
+               <img loading="lazy" decoding="async" src="Supporters/org-name.png" alt="Organisation Name" onerror="this.replaceWith(this.alt)"></a>
+           Logo badge, no link yet:
+             <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/org-name.png" alt="Organisation Name" onerror="this.replaceWith(this.alt)"></span>
+           Until the logo file is uploaded, the badge shows the alt text
+           (the organisation's name) instead of a broken image — so a donor
+           can go up the day they say yes and the logo can follow.
+           Logos: max 400px wide, 128px high, PNG, into Supporters/.
+           Paste new lines inside .logo-strip below.
+           ================================================================ -->
+      <div class="logo-strip">
+        <a class="supporter" href="https://thinksquare.com.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/think-square.png" alt="Think Square" onerror="this.replaceWith(this.alt)"></a>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/mathematicalendar.png" alt="Mathematicalendar" onerror="this.replaceWith(this.alt)"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/maths-heroes.png" alt="Maths Heroes" onerror="this.replaceWith(this.alt)"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/number-hive.png" alt="Number Hive" onerror="this.replaceWith(this.alt)"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEASE ============ -->
+<section class="tease">
+  <div class="wrap">
+    <div class="cards">
+      <div class="card">
+        <span class="tag">THE WEEK</span>
+        <h3>Five days, five surprises</h3>
+      </div>
+      <div class="card">
+        <span class="tag">THE VIBE</span>
+        <h3>A festival of maths, Australia-wide</h3>
+      </div>
+      <div class="card">
+        <span class="tag">THE GOODIES</span>
+        <h3>K-12 resources and challenges, straight to you</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHARE ============ -->
+<section class="share band">
+  <div class="wrap">
+    <h2>Good maths spreads fast</h2>
+    <p>Know a teacher who'd love this? Send it to them using these links:</p>
+    <div class="share-btns">
+      <button class="btn-gold" id="copyBtn">Copy the link</button>
+      <a class="btn-outline" href="mailto:?subject=Maths%20Week%20Australia%20is%20coming&body=Something%20big%20is%20coming%20for%20maths%20classrooms%20%E2%80%94%2010%E2%80%9314%20May%202027%2C%20free%20for%20every%20teacher.%20Get%20on%20the%20list%3A%20https%3A%2F%2Fmathsweek.au">Email a colleague</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO'S BEHIND THIS ============ -->
+<section class="behind">
+  <div class="wrap">
+    <h2>Brought to you by...</h2>
+    <!-- ================================================================
+         MTC LOGO: save the red-icon + BLUE-text version of the MTC logo
+         as mtc-logo.png in the same folder as this page (or paste a full
+         URL once hosted). Use the blue-text version — this section has a
+         light cream background; the white-text version is for dark fills.
+         If the image can't be found, a text badge shows instead.
+         ================================================================ -->
+    <p class="mtc-logo">
+      <a href="https://www.mathsteachercircles.org/" target="_blank" rel="noopener">
+        <img loading="lazy" decoding="async" src="MTC_LogoOnLight_RGB-v2.png" alt="Maths Teacher Circles"
+             onerror="this.outerHTML='<span class=&quot;supporter&quot;>Maths Teacher Circles</span>'">
+      </a>
+    </p>
+
+    <div class="supporters">
+      <h3>Community Ambassadors</h3>
+      <!-- ================================================================
+           ADDING AN AMBASSADOR:
+           <div class="amb">
+             <img loading="lazy" decoding="async" src="images/firstname-lastname.jpg" alt="Full Name">
+             <div class="amb-name">Full Name</div>
+             <div class="amb-role">One-line descriptor</div>
+           </div>
+           Paste inside .amb-grid below. Square photos work best (they're
+           cropped to circles). Delete the placeholder once you have 2–3.
+           ================================================================ -->
+      <div class="amb-grid">
+        <div class="amb">
+          <img loading="lazy" decoding="async" src="eddie-woo-v2.jpg" alt="Eddie Woo">
+          <div class="amb-name">Eddie Woo</div>
+          <div class="amb-role">Maths teacher &amp; creator of Wootube</div>
+        </div>
+        <div class="amb">
+          <img loading="lazy" decoding="async" src="kaye-stacey.jpg" alt="Kaye Stacey AM">
+          <div class="amb-name">Kaye Stacey AM</div>
+          <div class="amb-role">Emeritus Professor, Maths Education</div>
+        </div>
+        <div class="amb">
+          <img loading="lazy" decoding="async" src="james-tanton-v2.jpg" alt="James Tanton">
+          <div class="amb-name">James Tanton</div>
+          <div class="amb-role">Mathematician, Global Math Project</div>
+        </div>
+        <div class="amb">
+          <img loading="lazy" decoding="async" src="amie-albrecht-v2.jpg" alt="Amie Albrecht">
+          <div class="amb-name">Amie Albrecht</div>
+          <div class="amb-role">Professor, Maths Education</div>
+        </div>
+        <div class="amb">
+          <img loading="lazy" decoding="async" src="michaela-epstein-v2.jpg" alt="Michaela Epstein">
+          <div class="amb-name">Michaela Epstein</div>
+          <div class="amb-role">Founder, Maths Teacher Circles</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="supporters">
+      <h3>Sponsors &amp; Supporters</h3>
+      <!-- ================================================================
+           ADDING A SPONSOR OR SUPPORTER:
+           Text badge (no link):
+             <span class="supporter">Organisation Name</span>
+           Logo badge, LINKED to their website (opens in new tab):
+             <a class="supporter" href="https://their-website.com.au" target="_blank" rel="noopener">
+               <img loading="lazy" decoding="async" src="images/org-name.png" alt="Organisation Name logo"></a>
+           The alt="" text is what screen readers announce and what shows
+           if the image fails to load — use the organisation's name.
+           Paste new lines inside .logo-strip below — spacing is automatic.
+           ================================================================ -->
+      <div class="logo-strip">
+        <a class="supporter" href="https://amsi.org.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/amsi-v2.png" alt="Australian Mathematical Sciences Institute"></a>
+        <a class="supporter" href="https://atsima.com/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/atsima-v2.png" alt="Aboriginal &amp; Torres Strait Islander Mathematics Alliance"></a>
+        <a class="supporter" href="https://www.canberramaths.org.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/cma-v2.png" alt="Canberra Mathematical Association"></a>
+        <a class="supporter" href="https://www.mansw.nsw.edu.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/mansw-v2.png" alt="Mathematical Association of NSW Inc"></a>
+        <a class="supporter" href="https://masaonline.org.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/masa-v2.png" alt="The Mathematical Association of South Australia"></a>
+        <a class="supporter" href="https://mat.tas.edu.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/mat-v2.png" alt="Mathematical Association of Tasmania"></a>
+        <a class="supporter" href="https://www.mav.vic.edu.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/mav.png" alt="The Mathematical Association of Victoria"></a>
+        <a class="supporter" href="https://mawainc.org.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/mawa.jpg" alt="The Mathematical Association of Western Australia"></a>
+        <a class="supporter" href="https://qamt.qld.edu.au/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="Supporters/qamt.png" alt="Queensland Association of Mathematics Teachers"></a>
+      </div>
+      <p class="join-in">Want to help make Maths Week Australia big?
+      <a href="mailto:info@mathsweek.au?subject=Sponsoring%20Maths%20Week%20Australia">Become a sponsor →</a></p>
+    </div>
+
+    <div class="supporters">
+      <h3>Just Some Of The Schools That Are Taking Part</h3>
+      <!-- ================================================================
+           ADDING A SCHOOL:
+           Name badge:  <span class="supporter">School Name</span>
+           Logo badge:  <span class="supporter"><img loading="lazy" decoding="async" src="images/school-name.png" alt="School Name"></span>
+           Paste new lines inside .logo-strip below, earliest schools first.
+           Delete the dashed placeholder once the first school is on.
+           ================================================================ -->
+      <div class="logo-strip">
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/st-michaels-grammar-school.png" alt="St Michael's Grammar School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/the-knox-school-2-v2.png" alt="The Knox School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/wesley-college.png" alt="Wesley College"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/yeshivah‑beth-rivkah-colleges.jpg" alt="Yeshivah-Beth Rivkah Colleges"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/port-elliot-primary-school-v2.png" alt="Port Elliot Primary School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/st-josephs-college-gregory-terrace.png" alt="St Joseph's College Gregory Terrace"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/macgregor-state-school-v2.png" alt="Macgregor State School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/mentone-girls-grammar-v2.jpg" alt="Mentone Girls' Grammar"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/brighton-secondary-school-v2.png" alt="Brighton Secondary School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/ruyton-girls-school.jpg" alt="Ruyton Girls School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/southern-cross-grammer-v2.png" alt="Southern Cross Grammar"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/namadgi-school-v2.png" alt="Namadgi School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/marist-regional-college-v2.jpg" alt="Marist Regional College"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/the-lakes-college-v2.png" alt="The Lakes College"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/napoleons-primary-school.jpg" alt="Napoleons Primary School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/de-la-salle-college-malvern-v2.png" alt="De La Salle College Malvern"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/bialik-college-v2.png" alt="Bialik College"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/brunswick-secondary-college-v2.jpg" alt="Brunswick Secondary College"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/erasmus-primary-school-v2.png" alt="Erasmus Primary School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/hastings-primary-school-v2.jpg" alt="Hastings Primary School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/st-marys-primary-scone-v2.jpg" alt="St Mary's Primary Scone"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/the-heights-school-v2.png" alt="The Heights School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/st-marys-catholic-primary-school-v2.png" alt="St Mary's Catholic Primary School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/st-francis-xavier-west-mackay-v2.png" alt="St Francis Xavier West Mackay"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/killester-college-v2.png" alt="Killester College"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/st-johns-grammar-school-v2.png" alt="St John's Grammar School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/west-wallsend-primary-school.png" alt="West Wallsend Primary School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/kent-park-primary-school-v2.png" alt="Kent Park Primary School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/school-of-isolated-and-distance-education.png" alt="School of Isolated and Distance Education"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/boneo-primary-school.png" alt="Boneo Primary School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/east-bentleigh-primary-school.png" alt="East Bentleigh Primary School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/koroit-and-district-primary-school-v2.png" alt="Koroit and District Primary School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/east-loddon-p-12-college-v2.jpg" alt="East Loddon P-12 College"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/kilvington-grammar-school.jpg" alt="Kilvington Grammar School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/st-matthews-windsor-v2.png" alt="St Matthew's Windsor"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/christ-the-king-primary-nsw.png" alt="Christ the King Primary School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/leongatha-primary-school.jpeg" alt="Leongatha Primary School"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/concordia-lutheran-college.JPG" alt="Concordia Lutheran College"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/australian-international-academy-of-education.png" alt="Australian International Academy- Caroline Springs Senior Campus"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/st-aloysius-college-sa.png" alt="St Aloysius College SA"></span>
+        <span class="supporter"><img loading="lazy" decoding="async" src="Schools/xavier-college.png" alt="Xavier College"></span>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOTTOM CTA ============ -->
+<section style="text-align:center;padding:32px 24px 64px;">
+  <p style="max-width:560px;margin:0 auto 24px;font-size:clamp(1.05rem,2.4vw,1.3rem);font-weight:400;line-height:1.45;text-wrap:balance;">Free for every teacher, in every school. The good stuff starts now.</p>
+  <a href="#register" style="display:inline-block;font-weight:700;font-size:1.05rem;background:var(--green);color:#fff;text-decoration:none;border-radius:999px;padding:16px 40px;box-shadow:3px 4px 0 rgba(11,61,36,.25);">Count me in →</a>
+</section>
+
+<script>
+  // Countdown to Mon 10 May 2027, 00:00 Australian Eastern Standard Time (UTC+10)
+  var days = Math.ceil((new Date('2027-05-10T00:00:00+10:00') - Date.now()) / 864e5);
+  document.getElementById('countdown').textContent = days + ' days to go';
+
+  // Copy link
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    navigator.clipboard.writeText('https://mathsweek.au').then(()=>{ this.textContent='Copied ✓'; setTimeout(()=>this.textContent='Copy the link',2000); });
+  });
+
+  // ---- Kit form view tracking --------------------------------------------
+  // Kit only counts a "visitor" on a form when its own script (ck.5.js) loads
+  // on the page and pings this endpoint. This page doesn't load that script —
+  // the form above is hand-built and posts straight to Kit's subscriptions
+  // endpoint — so without this block Kit records subscribers but zero
+  // visitors, and the dashboard shows a 0% conversion rate.
+  //
+  // We fire the same ping ourselves rather than loading ck.5.js, because that
+  // script binds its own submit handler to any form it finds and would fight
+  // the one below — risking double submissions and Kit's own success message
+  // replacing ours.
+  //
+  // Heads up: /visit is an internal Kit endpoint, not a documented API. It can
+  // change without notice, so this fails silently — stats are nice to have,
+  // never worth breaking a signup over. If the visitor count in Kit stops
+  // moving, this block is the first thing to check.
+  //
+  // The form ID here must match the one in the form's action URL above.
+  (function(){
+    var payload = JSON.stringify({
+      referrer: document.referrer || null,
+      host:     window.location.host,
+      search:   window.location.search
+    });
+    function ping(host){
+      return fetch('https://' + host + '/forms/10052335/visit', {
+        method:  'POST',
+        headers: {'Content-Type':'application/json'},
+        body:    payload
+      });
+    }
+    try {
+      // app.kit.com is the current host; app.convertkit.com is the older one
+      // Kit's own script still uses. Try the new one, fall back to the old.
+      ping('app.kit.com')
+        .catch(function(){ return ping('app.convertkit.com'); })
+        .catch(function(){});
+    } catch(err) {}
+  })();
+
+  // ---- Signup ------------------------------------------------------------
+  // Posts to Kit in the background, then shows the on-page message.
+  //
+  // Spam defence is two layers. Here: a honeypot field and a check that a
+  // human actually focused the form — both fail silently so a bot learns
+  // nothing. In Kit: double opt-in, which is the backstop for anything that
+  // posts straight to the endpoint and never touches this page.
+  //
+  // On failure we show an on-page error rather than falling back to a native
+  // form submit. Every realistic cause of failure here (visitor offline, Kit
+  // down, Kit rate-limiting) breaks a native submit too — it would just dump
+  // the person on a broken Kit page instead of ours.
+  var registerForm = document.getElementById('signup-form');
+  var formTouched  = false;
+  registerForm.addEventListener('focusin', function(){ formTouched = true; }, {once:true});
+
+  function showSignupError(){
+    registerForm.style.display = 'none';
+    document.getElementById('error').style.display = 'block';
+    if (window.gtag) gtag('event','signup_error');
+  }
+
+  registerForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var form = this;
+
+    var hp = form.querySelector('[name="mwa_hp"]');
+    if (hp && hp.value !== '') return;   // honeypot filled → bot
+    if (!formTouched) return;            // never focused a field → bot
+
+    try {
+      fetch(form.action, {
+        method:'POST',
+        body:new FormData(form),
+        headers:{'Accept':'application/json'}
+      }).then(function(r){
+        // A completed fetch is not a successful signup — 429 and 500 both
+        // arrive here. Without this check they'd show the success message.
+        if(!r.ok) throw new Error('kit error ' + r.status);
+        form.style.display='none';
+        document.getElementById('success').style.display='block';
+        if (window.gtag) gtag('event','signup_success');
+        if (window.fbq) fbq('track', 'Lead');
+      }).catch(showSignupError);
+    } catch(err) {
+      showSignupError();
+    }
+  });
+</script>
