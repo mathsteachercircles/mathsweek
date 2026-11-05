@@ -196,6 +196,14 @@ nav: false
   }
   a.supporter:hover{transform:rotate(-1deg) scale(1.04);}
   .supporter img{height:64px;max-width:200px;object-fit:contain;display:block;}
+  /* Person badge: a donor who's a person, not an organisation. Round photo +
+     name, same height as the logo pills so the row stays tidy. */
+  .supporter.person{display:inline-flex;align-items:center;gap:14px;padding:10px 26px 10px 10px;}
+  .supporter.person img{
+    width:64px;height:64px;max-width:none;border-radius:50%;object-fit:cover;
+    border:2px solid var(--ink);
+  }
+  .person-name{font-weight:700;font-size:1.02rem;white-space:nowrap;}
   .join-in{font-size:.92rem;font-weight:400;margin-top:22px;}
   .join-in a{color:var(--green);font-weight:700;}
   /* ambassadors */
@@ -328,6 +336,11 @@ nav: false
                <img loading="lazy" decoding="async" src="Supporters/org-name.png" alt="Organisation Name" onerror="this.replaceWith(this.alt)"></a>
            Logo badge, no link yet:
              <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/org-name.png" alt="Organisation Name" onerror="this.replaceWith(this.alt)"></span>
+           Person badge (a person, not an organisation) — photo + name:
+             <span class="supporter person"><img loading="lazy" decoding="async" src="firstname-lastname.jpg" alt="" onerror="this.remove()"><span class="person-name">Full Name</span></span>
+           (alt is empty because the name is right beside the photo; if the
+           photo fails it disappears and the name stays. Square photos,
+           192 × 192, at the repo root like the ambassador photos.)
            Until the logo file is uploaded, the badge shows the alt text
            (the organisation's name) instead of a broken image — so a donor
            can go up the day they say yes and the logo can follow.
@@ -335,6 +348,7 @@ nav: false
            Paste new lines inside .logo-strip below.
            ================================================================ -->
       <div class="logo-strip">
+        <span class="supporter person"><img loading="lazy" decoding="async" src="eddie-woo-v2.jpg" alt="" onerror="this.remove()"><span class="person-name">Eddie Woo</span></span>
         <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/mathematicalendar.png" alt="Mathematicalendar" onerror="this.replaceWith(this.alt)"></span>
         <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/maths-heroes.png" alt="Maths Heroes" onerror="this.replaceWith(this.alt)"></span>
         <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/number-hive.png" alt="Number Hive" onerror="this.replaceWith(this.alt)"></span>
@@ -347,6 +361,7 @@ nav: false
 <!-- ============ TEASE ============ -->
 <section class="tease">
   <div class="wrap">
+    <h2>Here's what's coming</h2>
     <div class="cards">
       <div class="card">
         <span class="tag">THE WEEK</span>
