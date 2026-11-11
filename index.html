@@ -204,6 +204,33 @@ nav: false
     border:2px solid var(--ink);
   }
   .person-name{font-weight:700;font-size:1.02rem;white-space:nowrap;}
+  /* ---------- SLIDING REEL (prize donors) ----------
+     The small script straight after the donor strip adds the "reel" class and
+     wraps the badges in two identical .reel-group rows. Both rows slide left
+     together; when the first has slid fully out of view the second is sitting
+     exactly where the first started, so the loop has no visible join.
+     Without that script (or for visitors whose device is set to "reduce
+     motion") none of this applies and the strip stays a normal wrapped list. */
+  .logo-strip.reel{
+    flex-wrap:nowrap;justify-content:flex-start;overflow:hidden;
+    padding:8px 0; /* headroom so a badge's hover tilt isn't clipped */
+    /* Soft fade at each end so badges slide in and out rather than being cut off */
+    -webkit-mask-image:linear-gradient(to right, rgba(0,0,0,0) 0, rgba(0,0,0,1) 7%, rgba(0,0,0,1) 93%, rgba(0,0,0,0) 100%);
+    mask-image:linear-gradient(to right, rgba(0,0,0,0) 0, rgba(0,0,0,1) 7%, rgba(0,0,0,1) 93%, rgba(0,0,0,0) 100%);
+  }
+  .reel-group{
+    display:flex;flex-shrink:0;align-items:center;justify-content:space-around;
+    gap:16px;min-width:100%;
+    /* --reel-time is set by the script: a few seconds per badge, so the reel
+       keeps the same pace however many donors are added. */
+    animation:reel-slide var(--reel-time,40s) linear infinite;
+  }
+  /* The 16px here must match the gap above, or the loop will jump */
+  @keyframes reel-slide{to{transform:translateX(calc(-100% - 16px));}}
+  /* Pause while someone is pointing at it, tapping it, or tabbing through it */
+  .logo-strip.reel:hover .reel-group,
+  .logo-strip.reel:focus-within .reel-group{animation-play-state:paused;}
+  .reel .supporter{flex-shrink:0;white-space:nowrap;}
   .join-in{font-size:.92rem;font-weight:400;margin-top:22px;}
   .join-in a{color:var(--green);font-weight:700;}
   /* ambassadors */
@@ -346,8 +373,13 @@ nav: false
            can go up the day they say yes and the logo can follow.
            Logos: max 400px wide, 128px high, PNG, into Supporters/.
            Paste new lines inside .logo-strip below.
+
+           THIS STRIP IS A SLIDING REEL. Nothing extra to do when adding a
+           donor: paste the line in once, as above, and the script just
+           below the strip repeats the row and sets the speed by itself.
+           Order here = order they slide past, first line first.
            ================================================================ -->
-      <div class="logo-strip">
+      <div class="logo-strip" id="donor-reel">
         <span class="supporter person"><img loading="lazy" decoding="async" src="eddie-woo-v2.jpg" alt="" onerror="this.remove()"><span class="person-name">Eddie Woo</span></span>
         <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/mathematicalendar.png" alt="Mathematicalendar" onerror="this.replaceWith(this.alt)"></span>
         <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/maths-heroes.png" alt="Maths Heroes" onerror="this.replaceWith(this.alt)"></span>
@@ -357,6 +389,41 @@ nav: false
         <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/dr-paul-swan.png" alt="Dr Paul Swan" onerror="this.replaceWith(this.alt)"></span>
         <span class="supporter"><img loading="lazy" decoding="async" src="Supporters/think-square.png" alt="Think Square" onerror="this.replaceWith(this.alt)"></span>
       </div>
+      <!-- Donor reel. This script sits right here, straight after the strip
+           (not with the other scripts at the bottom of the page) so the reel
+           is built before the page first shows — otherwise the wrapped list
+           would flash up and then jump. Keep it directly below #donor-reel. -->
+      <script>
+        (function(){
+          var strip = document.getElementById('donor-reel');
+          if (!strip || !strip.children.length) return;
+          // Visitors who've asked their device to reduce motion keep the plain list
+          if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+          // Move the badges into one row...
+          var row = document.createElement('div');
+          row.className = 'reel-group';
+          while (strip.firstElementChild) row.appendChild(strip.firstElementChild);
+          // Lazy-loading waits until an image is about to be seen, which in a
+          // moving strip means logos popping in as they arrive. Load these now.
+          Array.prototype.forEach.call(row.querySelectorAll('img'), function(img){ img.loading = 'eager'; });
+
+          // ...and make an identical second row to follow it round. The copy
+          // is hidden from screen readers and keyboards so nothing is
+          // announced or tabbed to twice.
+          var copy = row.cloneNode(true);
+          copy.setAttribute('aria-hidden', 'true');
+          Array.prototype.forEach.call(copy.querySelectorAll('a'), function(a){ a.tabIndex = -1; });
+
+          // Speed: 5 seconds per badge. Lower the 5 to go faster, raise it to go slower.
+          strip.style.setProperty('--reel-time', (row.children.length * 5) + 's');
+
+          strip.textContent = '';
+          strip.appendChild(row);
+          strip.appendChild(copy);
+          strip.classList.add('reel');
+        })();
+      </script>
     </div>
   </div>
 </section>
